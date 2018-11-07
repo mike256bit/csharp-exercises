@@ -8,11 +8,15 @@ namespace Gradebook
     {
         public static void Main(string[] args)
         {
+            // initialize the list objects and declare what kind of data they will store.
             List<string> students = new List<string>();
             List<double> grades = new List<double>();
             string newStudent;
 
             Console.WriteLine("Enter your students (or ENTER to finish):");
+
+            // prompt for name, if name isn't empty, add it to the student list. Get the next ReadLine and add until user returns "" (by returning the empty line)
+
             do
             {
                 newStudent = Console.ReadLine();
@@ -46,3 +50,11 @@ namespace Gradebook
         }
     }
 }
+
+/*
+ *  List Methods:
+ *      .Add()          Adds item
+ *      .Contains()     Checks list for item, returns boolean
+ *      .IndexOf()      Returns index pos of first occurance of item, else -1 if not in list
+ *      .Sort()         Sorts list by default sort comparison (?)
+ *      .ToArray()      Return array containing elements of list
