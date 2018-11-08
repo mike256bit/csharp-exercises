@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FibSequence", "FibSequence\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradebookDictVerTwo", "GradebookDictVerTwo\GradebookDictVerTwo.csproj", "{9AF73E60-150E-4BB9-BB37-9802B4615A93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountingCharacters", "CountingCharacters\CountingCharacters.csproj", "{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +112,10 @@ Global
 		{9AF73E60-150E-4BB9-BB37-9802B4615A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AF73E60-150E-4BB9-BB37-9802B4615A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AF73E60-150E-4BB9-BB37-9802B4615A93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
