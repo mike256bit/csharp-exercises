@@ -16,27 +16,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradebookDict", "GradebookD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradebookArray", "GradebookArray\GradebookArray.csproj", "{89051A0E-8D18-48C3-B4E6-D05F62D252CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "HelloWorld\HelloWorld.csproj", "{D8F668F6-1603-4549-A508-F88A1C61AB2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorld", "HelloWorld\HelloWorld.csproj", "{D8F668F6-1603-4549-A508-F88A1C61AB2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RectangleArea", "RectangleArea\RectangleArea.csproj", "{941662DC-3973-40E2-A3CF-73F6C7C60579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RectangleArea", "RectangleArea\RectangleArea.csproj", "{941662DC-3973-40E2-A3CF-73F6C7C60579}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasMileage", "GasMileage\GasMileage.csproj", "{9FBD1C54-7634-44DE-BC9D-C20688CA1010}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GasMileage", "GasMileage\GasMileage.csproj", "{9FBD1C54-7634-44DE-BC9D-C20688CA1010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AliceSearch", "AliceSearch\AliceSearch.csproj", "{D49DF53A-41DA-4048-AEF9-AA70AB649257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AliceSearch", "AliceSearch\AliceSearch.csproj", "{D49DF53A-41DA-4048-AEF9-AA70AB649257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircleArea", "CircleArea\CircleArea.csproj", "{0E5564F9-6660-4317-A6EB-E23B11170831}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CircleArea", "CircleArea\CircleArea.csproj", "{0E5564F9-6660-4317-A6EB-E23B11170831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithStrings", "WorkingWithStrings\WorkingWithStrings.csproj", "{89958BA4-ABEE-451A-A772-541D4B6EC92E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithStrings", "WorkingWithStrings\WorkingWithStrings.csproj", "{89958BA4-ABEE-451A-A772-541D4B6EC92E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvenSum", "EvenSum\EvenSum.csproj", "{AD2BF312-20BA-4604-9C59-593438BAE8A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvenSum", "EvenSum\EvenSum.csproj", "{AD2BF312-20BA-4604-9C59-593438BAE8A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetFive", "GetFive\GetFive.csproj", "{20DBB28B-49AD-4F70-9843-891D3F465B3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetFive", "GetFive\GetFive.csproj", "{20DBB28B-49AD-4F70-9843-891D3F465B3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FibSequence", "FibSequence\FibSequence.csproj", "{170E0B18-C449-4987-9EED-D87D56E75584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FibSequence", "FibSequence\FibSequence.csproj", "{170E0B18-C449-4987-9EED-D87D56E75584}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradebookDictVerTwo", "GradebookDictVerTwo\GradebookDictVerTwo.csproj", "{9AF73E60-150E-4BB9-BB37-9802B4615A93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradebookDictVerTwo", "GradebookDictVerTwo\GradebookDictVerTwo.csproj", "{9AF73E60-150E-4BB9-BB37-9802B4615A93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountingCharacters", "CountingCharacters\CountingCharacters.csproj", "{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CountingCharacters", "CountingCharacters\CountingCharacters.csproj", "{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMVC", "HelloMVC\HelloMVC.csproj", "{24653687-3A57-4363-A91F-0F99616B42C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +118,10 @@ Global
 		{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D66FFAD-B023-4D0B-93CB-A7E4D7569134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24653687-3A57-4363-A91F-0F99616B42C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24653687-3A57-4363-A91F-0F99616B42C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24653687-3A57-4363-A91F-0F99616B42C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24653687-3A57-4363-A91F-0F99616B42C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

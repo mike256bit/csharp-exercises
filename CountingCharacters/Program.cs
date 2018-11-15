@@ -37,6 +37,7 @@ namespace CountingCharacters
                     {
                         CharDict[c] = 1;
                     }
+
                 }
 
                 foreach (KeyValuePair<char, int> character in CharDict)

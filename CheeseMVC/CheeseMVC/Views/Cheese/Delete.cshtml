@@ -1,0 +1,14 @@
+﻿@{
+}
+
+<h1>Cheeses that may have fallen out of favor.</h1>
+
+<form method="post">
+    @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+    {
+        <input name="name" type="checkbox" value="@cheese.Key"/>@cheese.Key<br />
+    }
+    <br />
+    <input type="submit" value="Screw these cheeses" />
+</form>
+

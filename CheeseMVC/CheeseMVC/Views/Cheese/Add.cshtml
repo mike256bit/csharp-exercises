@@ -1,0 +1,29 @@
+﻿@{
+
+}
+
+<h1>Hey, can I bug you to add a cheese to this silly list?</h1>
+
+@if (ViewBag.AddError != "")
+{
+    <h4 style="color:red;">@ViewBag.AddError</h4>
+}
+
+<form method="post">
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td><input name="name" type="text" /></td>
+        </tr>
+        <tr>
+            <td style="padding-right: 5px;">Description: </td>
+            <td><input name="desc" type="text" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add your cheese" style="width: 100%; margin: 5px auto;"/></td>
+        </tr>
+    </table>
+    
+    
+    
+</form>

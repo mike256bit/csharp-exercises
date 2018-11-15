@@ -1,0 +1,44 @@
+﻿@{
+
+    //list<string> cheeses = new list<string>();
+
+    //cheeses.add("cheddar");
+    //cheeses.add("muenster");
+    //cheeses.add("parmesan");
+
+    //don't do the above. this is bad mvc since we're mixing view and controller/model
+}
+
+
+<h1>Cheeses.</h1>
+
+<p>
+    @*Dynamically creates links based on controller and action*@
+    
+</p>
+
+@*use @ to deliniate c#, all c# elements require it when using variables for example.*@
+<table>
+    <tr style="border-bottom: 1px solid black;"><td style="font-weight:bold; font-size: 16px; width: 100px;">Cheese</td><td style="font-size: 16px;">Description <span style="font-style:italic; font-size: 16px;">(Optional)</span></td></tr>
+
+    @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+    {
+        <tr>
+            <td style="font-weight: bold;">@cheese.Key</td>
+            <td>@cheese.Value</td>
+        </tr>
+    }
+
+    @if (ViewBag.cheeses.Count == 0)
+    {
+        <tr>
+            <td colspan="2"><br /><h4>No cheeses yet.</h4></td>
+        </tr>
+    }
+    <tr>
+        <td colspan="2"><br /><a asp-controller="Cheese" asp-action="Add">Add a cheese.</a></td>
+    </tr>
+    <tr>
+        <td colspan="2"><a asp-controller="Cheese" asp-action="Delete">Remove a cheese.</a></td>
+    </tr>
+</table>
