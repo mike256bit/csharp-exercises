@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using CheeseMVC.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,17 +12,14 @@ namespace CheeseMVC.Controllers
 {
     public class CheeseController : Controller
     {
-        //'static' availble to any code within this class
-        //Class vars are usually capitalized and local vars are not
-        static private Dictionary<string, string> Cheeses = new Dictionary<string, string>();
+        
         static private string error = "";
 
         // GET: /<controller>/
         public IActionResult Index()
         {
-
             //Links the foreach loop in the template to this list
-            ViewBag.Cheeses = Cheeses;
+            ViewBag.Cheeses = CheeseData.GetAll();
             error = "";
 
             return View();
@@ -32,28 +31,22 @@ namespace CheeseMVC.Controllers
             return View();
         }
 
-        //Go to delete form
-        public IActionResult Delete()
-        {
-            ViewBag.Cheeses = Cheeses;
-            return View();
-        }
-
         [HttpPost]
         [Route("/Cheese/Add")]
-        public IActionResult NewCheese(string name, string desc)
+        public IActionResult NewCheese(string name, string desc = "(none)")
         {
             error = "";
 
-            if (string.IsNullOrEmpty(desc))
-            {
-                desc = "(none)";
-            }
 
             if(!string.IsNullOrEmpty(name))
             {
-                Cheeses[name] = desc;
+                //Figure out how to create a new instance based on the string name of the cheese. 
+                //look at activator.createinstance. you'll need it some day. 
+
+                CheeseData.Add(new Cheese(name, desc));
+
             }
+
             else
             {
                 error = "Something went wrong. Please try again.";
@@ -64,17 +57,38 @@ namespace CheeseMVC.Controllers
             return Redirect("/Cheese");
         }
 
+        //Go to delete form
+        public IActionResult Delete()
+        {
+            ViewBag.Cheeses = CheeseData.GetAll();
+            return View();
+        }
+
         [HttpPost]
         [Route("/Cheese/Delete")]
-        public IActionResult DelCheese(string[] name)
+        public IActionResult DelCheese(int[] cheeseIds)
         {
-            int i = 0;
-            while (i < name.Count())
-            {
-                Cheeses.Remove(name[i]);
-                i++;
-            }
+            //int delCheese = 0;
 
+            //change the cheese class to include a unique integer ID, starting at 0, and just use that as the index pos. 
+            //foreach (int anId in cheeseIds) 
+            //{
+            //    foreach (Cheese aCheese in cheeseList)
+            //    {
+            //        if (aCheese.Name == aName)
+            //        {
+            //            delCheese = cheeseList.IndexOf(aCheese);
+            //        }
+            //    }
+
+            //    cheeseList.RemoveAt(delCheese);
+            //}
+
+            foreach (int anId in cheeseIds)
+            {
+                CheeseData.Remove(anId);
+            }
+        
             return Redirect("/Cheese");
         }
     }
