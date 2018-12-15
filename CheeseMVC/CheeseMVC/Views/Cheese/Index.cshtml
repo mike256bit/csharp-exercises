@@ -26,6 +26,8 @@
         <tr>
             <td style="font-weight: bold;">@aCheese.Name</td>
             <td>@aCheese.Description</td>
+            @*<td>@aCheese.CheeseId</td>*@
+            <td style="padding-left: 10px;"><a asp-controller="Cheese" asp-action="Edit" asp-route-cheeseId="@aCheese.CheeseId">Edit</a></td>
         </tr>
     }
 

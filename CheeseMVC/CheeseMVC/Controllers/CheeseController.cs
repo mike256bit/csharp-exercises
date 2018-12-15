@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CheeseMVC.Models;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CheeseMVC.Controllers
 {
     public class CheeseController : Controller
     {
-        
+        //why this
         static private string error = "";
 
-        // GET: /<controller>/
+        //Home page with list of all cheeses
         public IActionResult Index()
         {
             //Links the foreach loop in the template to this list
@@ -25,28 +24,28 @@ namespace CheeseMVC.Controllers
             return View();
         }
 
+        //Go to add form
         public IActionResult Add()
         {
             ViewBag.AddError = error;
             return View();
         }
 
+        //Add new cheese from form data
         [HttpPost]
         [Route("/Cheese/Add")]
-        public IActionResult NewCheese(string name, string desc = "(none)")
+        public IActionResult NewCheese(Cheese newCheese)
         {
             error = "";
 
-
-            if(!string.IsNullOrEmpty(name))
+            //check for empty name
+            if(!string.IsNullOrEmpty(newCheese.Name))
             {
-                //Figure out how to create a new instance based on the string name of the cheese. 
-                //look at activator.createinstance. you'll need it some day. 
 
-                CheeseData.Add(new Cheese(name, desc));
-
+                CheeseData.Add(newCheese);
             }
 
+            //if empty throw error
             else
             {
                 error = "Something went wrong. Please try again.";
@@ -64,31 +63,38 @@ namespace CheeseMVC.Controllers
             return View();
         }
 
+        //Delete cheese from form data
         [HttpPost]
         [Route("/Cheese/Delete")]
         public IActionResult DelCheese(int[] cheeseIds)
         {
-            //int delCheese = 0;
-
-            //change the cheese class to include a unique integer ID, starting at 0, and just use that as the index pos. 
-            //foreach (int anId in cheeseIds) 
-            //{
-            //    foreach (Cheese aCheese in cheeseList)
-            //    {
-            //        if (aCheese.Name == aName)
-            //        {
-            //            delCheese = cheeseList.IndexOf(aCheese);
-            //        }
-            //    }
-
-            //    cheeseList.RemoveAt(delCheese);
-            //}
-
+            //checkbox returns int array, iterate thru array
             foreach (int anId in cheeseIds)
             {
+                //delete where cheeseId matches current ID from loop
                 CheeseData.Remove(anId);
             }
         
+            return Redirect("/Cheese");
+        }
+
+        //Go to edit form
+        public IActionResult Edit(int cheeseId)
+        {
+            ViewBag.editCheese = CheeseData.GetById(cheeseId);
+            return View();
+        }
+
+        //Edit cheese from form data
+        [HttpPost]
+        public IActionResult Edit(int cheeseId, string name, string description)
+        {
+            Cheese editCheese = CheeseData.GetById(cheeseId);
+
+            editCheese.Name = name;
+            editCheese.Description = description;
+
+                       
             return Redirect("/Cheese");
         }
     }

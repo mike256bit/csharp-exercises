@@ -12,11 +12,8 @@ namespace CheeseMVC.Models
         public int CheeseId { get; set; }
         private static int nextId = 1;
 
-        public Cheese(string name, string description)
-        {
-            this.Name = name;
-            this.Description = description;
-            this.CheeseId = nextId;
+        public Cheese() {
+            CheeseId = nextId;
             nextId++;
         }
     }      

@@ -1,0 +1,28 @@
+﻿
+<h1>Hey, can I bug you to edit "@ViewBag.editCheese.Name" (id="@ViewBag.editCheese.CheeseId")?</h1>
+
+@if (ViewBag.AddError != "")
+{
+    <h4 style="color:red;">@ViewBag.AddError</h4>
+}
+
+    <form method="post">
+        <input type="hidden" value="@ViewBag.editCheese.CheeseId" name="id" />
+        <table>
+            <tr>
+                <td>Name: </td>
+                <td><input name="name" type="text" value="@ViewBag.editCheese.Name" /></td>
+            </tr>
+            <tr>
+                <td style="padding-right: 5px;">Description: </td>
+                <td><input name="description" type="text" value="@ViewBag.editCheese.Description" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Edit your cheese" style="width: 100%; margin: 5px auto;" /></td>
+            </tr>
+
+        </table>
+
+
+
+    </form>

@@ -6,7 +6,7 @@
 <form method="post">
     @foreach (Cheese aCheese in ViewBag.Cheeses)
     {
-        <input name="cheeseIds" type="checkbox" value="@aCheese.CheeseId"/>@aCheese.Name <br />
+        <input name="cheeseIds" type="checkbox" value="@aCheese.CheeseId"/> @aCheese.Name <br />
     }
     <br />
     <input type="submit" value="Screw these cheeses" />
