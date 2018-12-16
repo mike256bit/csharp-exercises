@@ -1,23 +1,34 @@
-﻿
+﻿@model CheeseMVC.ViewModels.AddCheeseViewModel
+
 <h1>Hey, can I bug you to add a cheese to this silly list?</h1>
 
-@if (ViewBag.AddError != "")
-{
-    <h4 style="color:red;">@ViewBag.AddError</h4>
-}
+<form asp-controller="Cheese" asp-action="Add" method="post">
 
-<form method="post">
+    @*<div asp-validation-summary="All"></div>*@
+
     <table>
         <tr>
             <td>Name: </td>
-            <td><input name="name" type="text" /></td>
+            <td><input asp-for="Name" /></td>
+            <td style="padding-left: 10px; color: red;"><span asp-validation-for="Name"></span></td>
         </tr>
         <tr>
             <td style="padding-right: 5px;">Description: </td>
-            <td><input name="description" type="text" /></td>
+            <td><input asp-for="Description" /></td>
+            <td style="padding-left: 10px; color: red;"><span asp-validation-for="Description"></span></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Add your cheese" style="width: 100%; margin: 5px auto;"/></td>
+            <td>Rating: </td>
+            <td> <input asp-for="Rating"></td>
+            <td style="padding-left: 10px; color: red;"><span asp-validation-for="Rating"></span></td>
+        </tr>
+        <tr>
+            <td>Type: </td>
+            <td> <select asp-for="Type" asp-items="Model.CheeseTypes"></select> </td>
+            <td style="padding-left: 10px; color: red;"><span asp-validation-for="Type"></span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add your cheese" style="width: 100%; margin: 5px auto;" /></td>
         </tr>
     </table>
     

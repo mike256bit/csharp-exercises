@@ -1,37 +1,29 @@
-﻿@{
-
-    //list<string> cheeses = new list<string>();
-
-    //cheeses.add("cheddar");
-    //cheeses.add("muenster");
-    //cheeses.add("parmesan");
-
-    //don't do the above. this is bad mvc since we're mixing view and controller/model
-}
-
+﻿@model List<CheeseMVC.Models.Cheese>
 
 <h1>Cheeses.</h1>
 
-<p>
-    @*Dynamically creates links based on controller and action*@
-    
-</p>
-
 @*use @ to deliniate c#, all c# elements require it when using variables for example.*@
 <table>
-    <tr style="border-bottom: 1px solid black;"><td style="font-weight:bold; font-size: 16px; width: 100px;">Cheese</td><td style="font-size: 16px;">Description <span style="font-style:italic; font-size: 16px;">(Optional)</span></td></tr>
+    <tr style="border-bottom: 1px solid black;">
+        <td style="font-weight:bold; font-size: 16px; width: 100px;">Cheese</td>
+        <td style="font-size: 16px; width: 200px;">Description @*<span style="font-style:italic; font-size: 16px;">(Optional)</span>*@</td>
+        <td style="font-size: 16px; width: 80px;">Type</td>
+        <td style="font-size: 16px;">Rating</td>
+    </tr>
 
-    @foreach (Cheese aCheese in ViewBag.Cheeses)
+    @*use model instead of viewbag, Model replaces "Viewbag.[whatever]"*@
+    @foreach (Cheese aCheese in Model)
     {
         <tr>
             <td style="font-weight: bold;">@aCheese.Name</td>
             <td>@aCheese.Description</td>
-            @*<td>@aCheese.CheeseId</td>*@
+            <td>@aCheese.Type</td>
+            <td>@aCheese.Rating</td>
             <td style="padding-left: 10px;"><a asp-controller="Cheese" asp-action="Edit" asp-route-cheeseId="@aCheese.CheeseId">Edit</a></td>
         </tr>
     }
 
-    @if (ViewBag.Cheeses.Count == 0)
+    @if (Model.Count == 0)
     {
         <tr>
             <td colspan="2"><br /><h4>No cheeses yet.</h4></td>

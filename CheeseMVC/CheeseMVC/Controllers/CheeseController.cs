@@ -5,57 +5,81 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CheeseMVC.Models;
-
+using CheeseMVC.ViewModels;
 
 namespace CheeseMVC.Controllers
 {
     public class CheeseController : Controller
     {
-        //why this
-        static private string error = "";
 
         //Home page with list of all cheeses
         public IActionResult Index()
         {
-            //Links the foreach loop in the template to this list
-            ViewBag.Cheeses = CheeseData.GetAll();
-            error = "";
-
-            return View();
+            //Links the foreach loop in the template to this list using a simple Viewmodel
+            List<Cheese> Cheeses = CheeseData.GetAll();
+            return View(Cheeses);
         }
 
         //Go to add form
         public IActionResult Add()
         {
-            ViewBag.AddError = error;
-            return View();
+            AddCheeseViewModel addCheeseViewModel = new AddCheeseViewModel();
+            return View(addCheeseViewModel);
         }
 
         //Add new cheese from form data
         [HttpPost]
-        [Route("/Cheese/Add")]
-        public IActionResult NewCheese(Cheese newCheese)
+        //[Route("/Cheese/Add")] if action is a diff name
+        public IActionResult Add(AddCheeseViewModel addCheeseViewModel)
         {
-            error = "";
-
-            //check for empty name
-            if(!string.IsNullOrEmpty(newCheese.Name))
+            //if ViewModel data validates:
+            if (ModelState.IsValid)
             {
+                addCheeseViewModel.CreateCheese();
 
-                CheeseData.Add(newCheese);
+                return Redirect("/Cheese");
             }
 
-            //if empty throw error
-            else
-            {
-                error = "Something went wrong. Please try again.";
-                return Redirect("/Cheese/Add");
-            }
-
-            //Send user back to /Cheese/Index
-            return Redirect("/Cheese");
+            //If not valid, rerender:
+            return View(addCheeseViewModel);
         }
 
+        //Go to edit form
+        public IActionResult Edit(int cheeseId)
+        {
+            EditCheeseViewModel editCheeseViewModel = new EditCheeseViewModel
+            {
+                CheeseId = cheeseId,
+                Name = CheeseData.GetById(cheeseId).Name,
+                Description = CheeseData.GetById(cheeseId).Description,
+                Type = CheeseData.GetById(cheeseId).Type,
+                Rating = CheeseData.GetById(cheeseId).Rating
+            };
+
+            return View(editCheeseViewModel);
+        }
+
+        //Edit cheese from form data
+        [HttpPost]
+        public IActionResult Edit(EditCheeseViewModel editCheeseViewModel)
+        {
+            //if ViewModel data validates:
+            if (ModelState.IsValid)
+            {
+                var editCheese = CheeseData.GetById(editCheeseViewModel.CheeseId);
+
+                editCheese.Name = editCheeseViewModel.Name;
+                editCheese.Description = editCheeseViewModel.Description;
+                editCheese.Type = editCheeseViewModel.Type;
+                editCheese.Rating = editCheeseViewModel.Rating;
+
+                return Redirect("/Cheese");
+            }
+
+            //If not valid, rerender:
+            return View(editCheeseViewModel);
+        }
+    
         //Go to delete form
         public IActionResult Delete()
         {
@@ -78,24 +102,6 @@ namespace CheeseMVC.Controllers
             return Redirect("/Cheese");
         }
 
-        //Go to edit form
-        public IActionResult Edit(int cheeseId)
-        {
-            ViewBag.editCheese = CheeseData.GetById(cheeseId);
-            return View();
-        }
 
-        //Edit cheese from form data
-        [HttpPost]
-        public IActionResult Edit(int cheeseId, string name, string description)
-        {
-            Cheese editCheese = CheeseData.GetById(cheeseId);
-
-            editCheese.Name = name;
-            editCheese.Description = description;
-
-                       
-            return Redirect("/Cheese");
-        }
     }
 }
