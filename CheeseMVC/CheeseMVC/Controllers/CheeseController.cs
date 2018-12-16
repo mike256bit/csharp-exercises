@@ -6,17 +6,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CheeseMVC.Models;
 using CheeseMVC.ViewModels;
+using CheeseMVC.Data;
 
 namespace CheeseMVC.Controllers
 {
     public class CheeseController : Controller
     {
+        //Introduce DbContext to reference
+        //Private field "context" of type CheeseDbContext
+        private CheeseDbContext context;
+
+        //Based on code added to startup, "request" dbContext via constructor
+        public CheeseController(CheeseDbContext dbContext)
+        {
+            //set private field to passed-in dbContext, Framework will create the controller
+            context = dbContext;
+        }
+
 
         //Home page with list of all cheeses
         public IActionResult Index()
         {
             //Links the foreach loop in the template to this list using a simple Viewmodel
-            List<Cheese> Cheeses = CheeseData.GetAll();
+            //Cheeses property of coxtext is a DbSet which will hold on to Cheese objects
+            List<Cheese> Cheeses = context.Cheeses.ToList();
             return View(Cheeses);
         }
 
@@ -35,7 +48,18 @@ namespace CheeseMVC.Controllers
             //if ViewModel data validates:
             if (ModelState.IsValid)
             {
-                addCheeseViewModel.CreateCheese();
+                //addCheeseViewModel.CreateCheese();
+                Cheese newCheese = new Cheese
+                {
+                    Name = addCheeseViewModel.Name,
+                    Description = addCheeseViewModel.Description,
+                    Type = addCheeseViewModel.Type,
+                    Rating = addCheeseViewModel.Rating
+                };
+
+                //Add and Save are part of the DbSet class
+                context.Cheeses.Add(newCheese);
+                context.SaveChanges();
 
                 return Redirect("/Cheese");
             }
@@ -47,13 +71,15 @@ namespace CheeseMVC.Controllers
         //Go to edit form
         public IActionResult Edit(int cheeseId)
         {
+            Cheese editCheese = context.Cheeses.Single(p => p.ID == cheeseId);
+
             EditCheeseViewModel editCheeseViewModel = new EditCheeseViewModel
             {
-                CheeseId = cheeseId,
-                Name = CheeseData.GetById(cheeseId).Name,
-                Description = CheeseData.GetById(cheeseId).Description,
-                Type = CheeseData.GetById(cheeseId).Type,
-                Rating = CheeseData.GetById(cheeseId).Rating
+                CheeseId = editCheese.ID,
+                Name = editCheese.Name,
+                Description = editCheese.Description,
+                Type = editCheese.Type,
+                Rating = editCheese.Rating
             };
 
             return View(editCheeseViewModel);
@@ -66,12 +92,14 @@ namespace CheeseMVC.Controllers
             //if ViewModel data validates:
             if (ModelState.IsValid)
             {
-                var editCheese = CheeseData.GetById(editCheeseViewModel.CheeseId);
+                var editCheese = context.Cheeses.Single(p => p.ID == editCheeseViewModel.CheeseId);
 
                 editCheese.Name = editCheeseViewModel.Name;
                 editCheese.Description = editCheeseViewModel.Description;
                 editCheese.Type = editCheeseViewModel.Type;
                 editCheese.Rating = editCheeseViewModel.Rating;
+
+                context.SaveChanges();
 
                 return Redirect("/Cheese");
             }
@@ -83,7 +111,7 @@ namespace CheeseMVC.Controllers
         //Go to delete form
         public IActionResult Delete()
         {
-            ViewBag.Cheeses = CheeseData.GetAll();
+            ViewBag.Cheeses = context.Cheeses.ToList();
             return View();
         }
 
@@ -96,8 +124,15 @@ namespace CheeseMVC.Controllers
             foreach (int anId in cheeseIds)
             {
                 //delete where cheeseId matches current ID from loop
-                CheeseData.Remove(anId);
+                //CheeseData.Remove(anId);
+
+                //retreive from DbContext
+                Cheese theCheese = context.Cheeses.Single(p => p.ID == anId);
+                //Remove object
+                context.Cheeses.Remove(theCheese);
             }
+
+            context.SaveChanges();
         
             return Redirect("/Cheese");
         }

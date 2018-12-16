@@ -9,17 +9,10 @@ namespace CheeseMVC.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
-
         public CheeseType Type { get; set; }
-
         public int Rating { get; set; }
+        public int ID { get; set; } //db framework will handle unique ID creation, framework prefers "ID" as shown
+ 
 
-        public int CheeseId { get; set; }
-        private static int nextId = 1;
-
-        public Cheese() {
-            CheeseId = nextId;
-            nextId++;
-        }
     }      
 }

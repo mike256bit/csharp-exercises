@@ -60,7 +60,7 @@ namespace CheeseMVC.ViewModels
                 Text = CheeseType.Processed.ToString()
             });
         }
-
+        /*
         public void CreateCheese()
         {
             Cheese newCheese = new Cheese
@@ -73,6 +73,6 @@ namespace CheeseMVC.ViewModels
 
             CheeseData.Add(newCheese);
         }
-        
+        */
     }
 }
